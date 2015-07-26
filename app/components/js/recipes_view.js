@@ -52,7 +52,7 @@ $(document).ready(function(){
       var tmpl = Handlebars.compile(this.template);
       tmpl(this.model.toJSON())
       this.$el.html(tmpl(this.model.toJSON()));
-      return this;
+        return this;
     }
   })
 
@@ -65,16 +65,16 @@ $(document).ready(function(){
     render: function(recipe) {
       if($(window).width() > 720) {
         var mainRecipe = recipe || RECIPES.models[0]
-        var rView = new RecipeViewMain({ model: mainRecipe })
-        this.$el.append(rView.render().el);
-        for (var i = 0; i < RECIPES.length; i++) {
-          var rView = new RecipeViewSmall({ model: RECIPES.models[i] })
-          $("#sideList").append(rView.render().el);
+        var mainView = new RecipeViewMain({ model: mainRecipe })
+        this.$el.append(mainView.render().el);
+        for (var i = 1; i < RECIPES.length; i++) {
+          var smallView = new RecipeViewSmall({ model: RECIPES.models[i] })
+          $("#sideList").append(smallView.render().el);
         };
       } else {
         for (var i = 0; i < RECIPES.models.length; i++) {
-          var rView = new RecipeViewMain({ model: RECIPES.models[i] })
-          this.$el.append(rView.render().el);
+          var mainView = new RecipeViewMain({ model: RECIPES.models[i] })
+          this.$el.append(mainView.render().el);
         };
       }
     },
