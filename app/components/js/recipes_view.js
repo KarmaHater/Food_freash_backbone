@@ -3,7 +3,8 @@ $(document).ready(function(){
   var RecipeView = Backbone.View.extend({
     template: $("#recipe-tmp").html(),
     events: {
-      'click a.check' : 'toggleFavorite'
+      'click a.check' : 'toggleFavorite',
+      'click input.rate' : 'rate'
     },
     render: function() {
       var tmpl = Handlebars.compile(this.template);
@@ -12,6 +13,7 @@ $(document).ready(function(){
       return this;
     },
     toggleFavorite: function(e) {
+      debugger
       e.preventDefault()
       var target = $(e.target)
       var id = target.attr('id')
@@ -25,6 +27,22 @@ $(document).ready(function(){
         target.addClass('check like');
         target.html('unFavorite')
       }
+    },
+    rate: function(e) {
+      var target = $(e.target)
+      var id = $(e.target).parent().attr('id')
+      var checkboxes = target.siblings().andSelf();
+      var numToChk = parseInt(target.attr('name'))
+      this.resetRate(checkboxes)
+      this.setRate(checkboxes, numToChk, id)
+    },
+    resetRate: function(checkboxes) {
+      checkboxes.prop('checked', false)
+    },
+    setRate: function(checkboxes, num, id, rate) {
+      checkboxes.slice(0, num).prop('checked', true)
+      var recipe = RECIPES.get(id)
+      recipe.set({rate: num})
     }
   })
 
