@@ -46,6 +46,8 @@ $(document).ready(function(){
 
   var RecipeViewSmall = Backbone.View.extend({
     template: $("#recipe-tmpl-small").html(),
+    tagName: 'li',
+    className: 'sml-recipe-box',
     render: function() {
       var tmpl = Handlebars.compile(this.template);
       tmpl(this.model.toJSON())
