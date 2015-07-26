@@ -2,22 +2,40 @@ $(document).ready(function(){
 
   var RecipeView = Backbone.View.extend({
     template: $("#recipe-tmp").html(),
+    events: {
+      'click a.check' : 'toggleFavorite'
+    },
     render: function() {
       var tmpl = Handlebars.compile(this.template);
       tmpl(this.model.toJSON())
       this.$el.html(tmpl(this.model.toJSON()));
       return this;
+    },
+    toggleFavorite: function(e) {
+      e.preventDefault()
+      var target = $(e.target)
+      var id = target.attr('id')
+      var recipe = RECIPES.get(id)
+      if(target.attr('class').includes('like')) {
+        recipe.set({'favorite': true})
+        target.removeClass('like');
+        target.html('Favorite')
+      } else {
+        recipe.set({'favorite': false})
+        target.addClass('check like');
+        target.html('unFavorite')
+      }
     }
   })
 
   var RecipesView = Backbone.View.extend({
     el: $("#recipesList"),
     initialize: function() {
-      this.collection = new RecipesCollection();
+      RECIPES = new RecipesCollection();
     },
     render: function() {
-      for (var i = 0; i < this.collection.models.length; i++) {
-        var rView = new RecipeView({ model: this.collection.models[i] })
+      for (var i = 0; i < RECIPES.models.length; i++) {
+        var rView = new RecipeView({ model: RECIPES.models[i] })
         this.$el.append(rView.render().el);
       };
     },
@@ -45,7 +63,7 @@ $(document).ready(function(){
         var calories = recipes[i].calories;
         var fats = recipes[i].fats;
         var proteins = recipes[i].proteins;
-        this.collection.push(recipes[i])
+        RECIPES.push(recipes[i])
       }
     }
   })

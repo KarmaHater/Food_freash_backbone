@@ -18,8 +18,7 @@ var Recipe = Backbone.Model.extend({
       calories: '',
       fats: '',
       proteins: '',
-      rate: '',
-      favorite: ''
+      favorite: false
     }
   }
 })
