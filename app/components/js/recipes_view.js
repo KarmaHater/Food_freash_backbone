@@ -1,13 +1,29 @@
 $(document).ready(function(){
 
   var RecipeView = Backbone.View.extend({
-    template: $("#recipe-tmp").html(),
+    template_main: $("#recipe-tmpl-main").html(),
+    template_small: $("#recipe-tmpl-main").html(),
     events: {
       'click a.check' : 'toggleFavorite',
       'click input.rate' : 'rate'
     },
     render: function() {
-      var tmpl = Handlebars.compile(this.template);
+      for (var i = 0; i < RECIPES.length; i++) {
+        var tmpl = Handlebars.compile(this.template_main);
+        tmpl(RECIPES.models[i].toJSON())
+        debugger
+        this.$el.html(tmpl(this.model.toJSON()));
+        return this
+      };
+    },
+    renderMainRecipe: function() {
+      var tmpl = Handlebars.compile(this.template_main);
+      tmpl(this.model.toJSON())
+      this.$el.html(tmpl(this.model.toJSON()));
+      return this;
+    },
+    renderSmallRecipes: function() {
+      var tmpl = Handlebars.compile(this.template_small);
       tmpl(this.model.toJSON())
       this.$el.html(tmpl(this.model.toJSON()));
       return this;
@@ -50,9 +66,17 @@ $(document).ready(function(){
     initialize: function() {
       RECIPES = new RecipesCollection();
     },
-    render: function() {
-      var rView = new RecipeView({ model: RECIPES.models[0] })
-      this.$el.append(rView.render().el);
+    render: function(recipe) {
+      var checkWindow = $(window).width < 720
+      if(checkWindow) {
+        var mainRecipe = recipe || RECIPES.models[0]
+        var rView = new RecipeView({ model: mainRecipe })
+        this.$el.append(rView.renderMainRecipe().el);
+      } else {
+        var mainRecipe = RECIPES.models
+        var rView = new RecipeView({ model: mainRecipe })
+        this.$el.append(rView.render().el);
+      }
     },
     start: function() {
       $.ajax({

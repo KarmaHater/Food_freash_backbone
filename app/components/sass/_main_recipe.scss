@@ -2,6 +2,7 @@
   text-decoration: none;
   @include sign_in($light-color);
   height: 20px;
+  display: inline-block;
 }
 // mobile
 .recipe-container {
@@ -40,7 +41,10 @@
     .intro {
       h2 {
         font-size: 2em;
-        margin-bottom: 25px;
+        margin-bottom: 5px;
+      }
+      p {
+        margin-top:0;
       }
       .recipe-image {
         width: 50%; //500/900
@@ -80,7 +84,8 @@
       }
     }
       h3 {
-        padding: 1%
+        padding: 1%;
+        margin: 1%;
       }
       ul {
         padding: 1%;
@@ -88,10 +93,13 @@
       ul li {
         width: 30%;
         float: left;
+        font-size: 10px;
       }
     .rate-fav {
-      float: right;
-      margin-right: 6%;
+      float: left;
+    }
+    .userRate {
+      display: inline-block;
     }
   }
 }

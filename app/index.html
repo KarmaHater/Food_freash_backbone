@@ -30,13 +30,21 @@
 <script src="components/js/recipes_view.js"></script>
 <script src="http://localhost:35729/livereload.js">
 </script>
-<script id="recipe-tmp" type="text/template">
+<script id="recipe-tmpl-small" type="text/template">
+  <figure>
+    <figcaption>
+      <h5>{{name}}</h5>
+      <img src={{img}} alt="">
+    </figcaption>
+  </figure>
+</script>
+<script id="recipe-tmpl-main" type="text/template">
 <article class="recipe-container">
   <header class="intro">
     <h2>{{name}}</h2>
     <p><b>Difficulty: {{difficulty}}</b> <b>Rating: {{rating}}</b></p>
     <figure class="recipe-image">
-      <img src={{image}} alt={{headline}}>
+      <img src={{thumb}} alt={{headline}}>
     </figure>
   </header>
   <div class="content">
@@ -44,9 +52,10 @@
       <p>{{description}}</p>
     </section>
   </div>
+  <div class="clear-fix"></div>
   <div class="rate-fav">
     <a href="#" id={{id}} class="check">Favorite</a>
-    <p><b>rate below...</b></p>
+    <b>rate below...</b>
     <div id={{id}} class="userRate">
       <input class="rate" name="1" type="checkbox">
       <input class="rate" name="2" type="checkbox">
