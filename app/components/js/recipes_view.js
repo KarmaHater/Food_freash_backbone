@@ -13,7 +13,6 @@ $(document).ready(function(){
       return this;
     },
     toggleFavorite: function(e) {
-      debugger
       e.preventDefault()
       var target = $(e.target)
       var id = target.attr('id')
@@ -52,10 +51,8 @@ $(document).ready(function(){
       RECIPES = new RecipesCollection();
     },
     render: function() {
-      for (var i = 0; i < RECIPES.models.length; i++) {
-        var rView = new RecipeView({ model: RECIPES.models[i] })
-        this.$el.append(rView.render().el);
-      };
+      var rView = new RecipeView({ model: RECIPES.models[0] })
+      this.$el.append(rView.render().el);
     },
     start: function() {
       $.ajax({
