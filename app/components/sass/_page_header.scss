@@ -1,0 +1,36 @@
+// mobile
+#page-header {
+  background-color: $brand-color;
+  height: 80px;
+  h1 {
+    margin: 0;
+    font-size: 3.5em;
+    padding: 1%;
+    color: $light-color;
+    text-shadow: 4px 4px black;
+  }
+}
+
+@media (min-width: $break-point-med) {
+  #page-header {
+    height: 130px;
+    h1 {
+      margin: 0;
+      font-size: 5em;
+      padding: 1%;
+      color: $light-color;
+      text-shadow: 4px 4px black
+    }
+  }
+}
+
+// desktop
+@media (min-width: $break-point-large) {
+  #page-header {
+    height: 150px;
+    h1 {
+      font-size: 6.5em;
+      padding-left: 5%
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "food_fresh_backbone",
+  "version": "0.0.0",
+  "authors": [
+    "Adnard-kod <andra.lally@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.1",
+    "handlebars": "~3.0.3"
+  }
+}

@@ -1,0 +1,32 @@
+  body {
+  margin: 0;
+  font-family: $body-font;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $headers-font;
+  text-shadow: 1px 1px $grDay;
+  &:hover {
+    color: $brand-color;
+  }
+}
+
+#container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  li {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.clear-fix {
+  clear: both;
+}

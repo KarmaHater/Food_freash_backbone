@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello Fresh</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/bower_components.css">
+</head>
+<body>
+<header id="page-header">
+  <h1>Hello Fresh</h1>
+</header>
+<article id="overlay">
+  <form id="signIn">
+    <input id="password" type="email" placeholder="email" required title="Please enter your email.">
+    <input id="email" type="password" placeholder="password" required title="Please enter your password.">
+    <input type="submit">
+  </form>
+</article>
+<div id="container">
+  <main>
+    <ul id="recipesList"></ul>
+  </main>
+</div>
+</body>
+
+<!-- The one jquery method I used was 'append', once! This is a built in functionality in angular so I thought it would be fair to use it here. It is so I can using the templating service handlebars. 
+ -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="js/bower_components.js"></script>
+<script src="js/script.js"></script>
+<script src="http://localhost:35729/livereload.js">
+</script>
+<script id="recipe-tmp" type="text/template">
+  <article class="recipe-container">
+    <header class="intro">
+      <h2>{{name}}</h2>
+      <p><b>Difficulty: {{difficulty}}</b> <b>Rating: {{rating}}</b></p>
+      <figure class="recipe-image">
+        <img src={{image}} alt={{headline}}>
+      </figure>
+    </header>
+    <div class="content">
+      <section class="description">
+        <p>{{description}}</p>
+      </section>
+    </div>
+    <div class="rate-fav">
+      <a href="#" id={{id}} class="check">Favorite</a>
+      <p><b>rate below...</b></p>
+      <div id={{id}} class="userRate">
+        <input class="rate" name="1" type="checkbox">
+        <input class="rate" name="2" type="checkbox">
+        <input class="rate" name="3" type="checkbox">
+        <input class="rate" name="4" type="checkbox">
+        <input class="rate" name="5" type="checkbox">
+      </div>
+    </div>
+    <div class="clear-fix"></div>
+    <section class="deliverable_ingredients floated-seaction">
+      <h3>Deliverable Ingredients</h3>
+      <ul>
+        {{#each deliverable_ingredients}}
+          <li>{{this}},</li>
+        {{/each}}
+      </ul>
+    </section>
+    <section class="deliverable_ingredients floated-seaction">
+      <h3>Ingredients</h3>
+      <ul>
+        {{#each ingredients}}
+          <li>{{this}},</li>
+        {{/each}}
+      </ul>
+    </section>
+    <section class="nutrition floated-seaction">
+      <h3>Nutrition</h3>
+      <ul>
+        <li><b>Calories:</b> {{calories}}</li>
+        <li><b>Fats:</b> {{fats}}</li>
+        <li><b>Proteins:</b> {{proteins}}</li>
+      </ul>
+    </section>
+  </article>
+  <div class="clear-fix"></div>
+</script>
+</html>

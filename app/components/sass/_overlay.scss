@@ -1,0 +1,26 @@
+#overlay {
+  position: absolute;
+  background-color: rgba(0,0,0,0.8);
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+#overlay form {
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 200px;
+  input {
+    @include sign_in($light-color);
+  }
+  input[type="submit"] {
+    @include sign_in($gray-lighter);
+    &:hover{
+      background-color: rgba(255,255,255, 0);
+      outline-color: $brand-color;
+      color: $brand-color;
+    }
+  }
+}

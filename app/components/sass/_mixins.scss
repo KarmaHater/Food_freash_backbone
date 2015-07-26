@@ -1,0 +1,15 @@
+@mixin sign_in($bc-color) {
+  width: 100%;
+  background-color: $bc-color;
+  outline: 5px solid #000000;
+  color: #000000;
+  display: block;
+  font-weight: 800;
+  font-size: 16px;
+  height: 50px;
+  letter-spacing: 1.5px;
+  margin: 25px 0 20px 0px;
+  padding-top: 9px;
+  text-transform: uppercase;
+  text-align: center;
+}
