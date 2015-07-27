@@ -48,11 +48,21 @@ $(document).ready(function(){
     template: $("#recipe-tmpl-small").html(),
     tagName: 'li',
     className: 'sml-recipe-box',
+    events: {
+      'click figure.small-image' : 'resetRecipe'
+    },
     render: function() {
       var tmpl = Handlebars.compile(this.template);
       tmpl(this.model.toJSON())
       this.$el.html(tmpl(this.model.toJSON()));
         return this;
+    },
+    resetRecipe: function(e) {
+      var newMainImage = RECIPES.get($(e.target).parent().attr('id'))
+      RECIPES.remove(newMainImage)
+      RECIPES.add(MAIN_RECIPE)
+      MAIN_RECIPE = newMainImage
+      APP.render(MAIN_RECIPE)
     }
   })
 
@@ -64,19 +74,27 @@ $(document).ready(function(){
     },
     render: function(recipe) {
       if($(window).width() > 720) {
-        var mainRecipe = recipe || RECIPES.models[0]
-        var mainView = new RecipeViewMain({ model: mainRecipe })
-        this.$el.append(mainView.render().el);
-        for (var i = 1; i < RECIPES.length; i++) {
-          var smallView = new RecipeViewSmall({ model: RECIPES.models[i] })
-          $("#sideList").append(smallView.render().el);
-        };
+        MAIN_RECIPE = recipe || RECIPES.models[0]
+        this.desktopDisplay(recipe)
       } else {
-        for (var i = 0; i < RECIPES.models.length; i++) {
-          var mainView = new RecipeViewMain({ model: RECIPES.models[i] })
-          this.$el.append(mainView.render().el);
-        };
+        this.mobileDisplay();
       }
+    },
+    desktopDisplay: function() {
+      $('#recipesList').html('')
+      $('#sideList').html('')
+      var mainView = new RecipeViewMain({ model: MAIN_RECIPE })
+      this.$el.append(mainView.render().el);
+      for (var i = 1; i < RECIPES.length; i++) {
+        var smallView = new RecipeViewSmall({ model: RECIPES.models[i] })
+        $("#sideList").append(smallView.render().el);
+      };
+    },
+    mobileDisplay: function() {
+      for (var i = 0; i < RECIPES.models.length; i++) {
+        var mainView = new RecipeViewMain({ model: RECIPES.models[i] })
+        this.$el.append(mainView.render().el);
+      };
     },
     start: function() {
       $.ajax({
@@ -105,7 +123,7 @@ $(document).ready(function(){
         RECIPES.push(recipes[i])
       }
     }, 
-    removeDoubleImg: function() {
+    resetMainImg: function() {
 
     }
     // ,
@@ -123,6 +141,6 @@ $(document).ready(function(){
     // }
   })
 
-  var view = new RecipesView;
-  view.start();
+  APP = new RecipesView;
+  APP.start();
 })
