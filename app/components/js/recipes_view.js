@@ -59,8 +59,8 @@ $(document).ready(function(){
     },
     resetRecipe: function(e) {
       var newMainImage = RECIPES.get($(e.target).parent().attr('id'))
-      RECIPES.remove(newMainImage)
       RECIPES.add(MAIN_RECIPE)
+      RECIPES.remove(newMainImage)
       MAIN_RECIPE = newMainImage
       APP.render(MAIN_RECIPE)
     }
@@ -85,7 +85,7 @@ $(document).ready(function(){
       $('#sideList').html('')
       var mainView = new RecipeViewMain({ model: MAIN_RECIPE })
       this.$el.append(mainView.render().el);
-      for (var i = 1; i < RECIPES.length; i++) {
+      for (var i = 0; i < RECIPES.length; i++) {
         var smallView = new RecipeViewSmall({ model: RECIPES.models[i] })
         $("#sideList").append(smallView.render().el);
       };
@@ -122,9 +122,6 @@ $(document).ready(function(){
         var proteins = recipes[i].proteins;
         RECIPES.push(recipes[i])
       }
-    }, 
-    resetMainImg: function() {
-
     }
     // ,
     // checkFormat: function(recipe) {
