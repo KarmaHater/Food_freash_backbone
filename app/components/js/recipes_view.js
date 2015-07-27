@@ -104,6 +104,9 @@ $(document).ready(function(){
         var proteins = recipes[i].proteins;
         RECIPES.push(recipes[i])
       }
+    }, 
+    removeDoubleImg: function() {
+
     }
     // ,
     // checkFormat: function(recipe) {

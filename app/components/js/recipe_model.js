@@ -5,20 +5,8 @@ var Recipe = Backbone.Model.extend({
   },  
   defaults: function() {
     return {
-      id: '',
-      name: '',
-      difficulty: '',
-      rating: '',
-      image: '',
-      headline: '',
-      description: '',
-      recipe_id: '',
-      deliverable_ingredients: '',
-      ingredients: '',
-      calories: '',
-      fats: '',
-      proteins: '',
-      favorite: false
+      favorite: false,
+      rate: 0
     }
   }
 })
