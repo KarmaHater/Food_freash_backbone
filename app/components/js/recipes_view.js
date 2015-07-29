@@ -15,7 +15,7 @@ $(document).ready(function(){
       e.preventDefault()
       var target = $(e.target)
       var id = target.attr('id')
-      var recipe = MAIN_RECIPE
+      var recipe = $(window).width() > 720 ? MAIN_RECIPE : RECIPES.get(id)
       if(target.attr('class').includes('like')) {
         recipe.set({'favorite': true})
         target.removeClass('like');
