@@ -39,7 +39,7 @@ $(document).ready(function(){
     },
     setRate: function(checkboxes, num, id, rate) {
       checkboxes.slice(0, num).prop('checked', true)
-      var recipe = RECIPES.get(id)
+      var recipe = $(window).width() > 720 ? MAIN_RECIPE : RECIPES.get(id)
       recipe.set({rate: num})
     }
   })
