@@ -15,7 +15,7 @@ $(document).ready(function(){
       e.preventDefault()
       var target = $(e.target)
       var id = target.attr('id')
-      var recipe = RECIPES.get(id)
+      var recipe = MAIN_RECIPE
       if(target.attr('class').includes('like')) {
         recipe.set({'favorite': true})
         target.removeClass('like');
@@ -84,8 +84,8 @@ $(document).ready(function(){
       $('#sideList').html('')
       var mainView = new RecipeViewMain({ model: MAIN_RECIPE })
       this.$el.append(mainView.render().el);
+      RECIPES.remove(MAIN_RECIPE)
       for (var i = 0; i < RECIPES.length; i++) {
-        RECIPES.remove(MAIN_RECIPE)
         var smallView = new RecipeViewSmall({ model: RECIPES.models[i] })
         $("#sideList").append(smallView.render().el);
       };
