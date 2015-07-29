@@ -60,7 +60,6 @@ $(document).ready(function(){
     resetRecipe: function(e) {
       var newMainImage = RECIPES.get($(e.target).parent().attr('id'))
       RECIPES.add(MAIN_RECIPE)
-      RECIPES.remove(newMainImage)
       MAIN_RECIPE = newMainImage
       APP.render(MAIN_RECIPE)
     }
@@ -86,6 +85,7 @@ $(document).ready(function(){
       var mainView = new RecipeViewMain({ model: MAIN_RECIPE })
       this.$el.append(mainView.render().el);
       for (var i = 0; i < RECIPES.length; i++) {
+        RECIPES.remove(MAIN_RECIPE)
         var smallView = new RecipeViewSmall({ model: RECIPES.models[i] })
         $("#sideList").append(smallView.render().el);
       };
