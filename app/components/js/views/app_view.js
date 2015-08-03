@@ -39,20 +39,7 @@ app.AppView = Backbone.View.extend({
   },
   createRecipes: function(recipes) {
     _.each(recipes, function(recipe) {
-      var id = app.counter;
-      var name = recipe.name;
-      var difficulty = recipe.difficulty;
-      var rating = recipe.rating;
-      var image = recipe.image;
-      var headline = recipe.headline;
-      var description = recipe.description;
-      var recipe_id= recipe.recipes_id
-      var deliverable_ingredients = recipe.deliverable_ingredients;
-      var ingredients = recipe.ingredients;
-      var calories = recipe.calories;
-      var fats = recipe.fats;
-      var proteins = recipe.proteins;
-      var recipe = new app.Recipe({model: recipe})
+      new_recipe = new app.Recipe({model: recipe})
       app.Recipes.add(recipe)
     })
     this.render();

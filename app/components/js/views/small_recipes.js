@@ -1,14 +1,14 @@
 var app = app || {};
 
 app.RecipeViewSmall = Backbone.View.extend({
-  template: $("#recipe-tmpl-small").html(),
+  // template: $("#recipe-tmpl-small").html(),
   tagName: 'li',
   className: 'sml-recipe-box',
   events: {
     'click figure.small-image' : 'resetRecipe'
   },
   render: function() {
-    var tmpl = Handlebars.compile(this.template);
+    var tmpl = Handlebars.compile($("#recipe-tmpl-small").html());
     tmpl(this.model.toJSON())
     this.$el.html(tmpl(this.model.toJSON()));
       return this;
