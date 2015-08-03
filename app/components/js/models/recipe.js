@@ -1,7 +1,8 @@
-var counter = 0
-var Recipe = Backbone.Model.extend({
+var app = app || {};
+app.counter = 0
+app.Recipe = Backbone.Model.extend({
   initialize: function() {
-    counter++
+    app.counter++
   },  
   defaults: function() {
     return {
